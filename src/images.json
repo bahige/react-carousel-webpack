@@ -1,0 +1,42 @@
+ [
+        {
+        "id": 0,
+        "name": "Denmark",
+        "image": "./src/assets/images/Denmark.png"  
+        },
+        {
+        "id": 1,
+        "name": "Estonia",
+        "image": "./src/assets/images/Estonia.png"  
+        },     
+        {
+        "id": 2,
+        "name": "Finland",
+        "image": "./src/assets/images/Finland.png"  
+        },
+        {
+        "id": 3,
+        "name": "Iceland",
+        "image": "./src/assets/images/Iceland.png"  
+        },
+        {
+        "id": 4,
+        "name": "Latvia",
+        "image": "./src/assets/images/Latvia.png"  
+        },
+        {
+        "id": 5,
+        "name": "Lithuania",
+        "image": "./src/assets/images/Lithuania.png"  
+        },
+        {
+        "id": 6,
+        "name": "Norway",
+        "image": "./src/assets/images/Norway.png"  
+        },
+        {
+        "id": 7,
+        "name": "Sweden",
+        "image": "./src/assets/images/Sweden.png"  
+        }
+    ]

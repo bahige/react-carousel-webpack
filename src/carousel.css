@@ -1,0 +1,98 @@
+#carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#slide {
+  position: relative;
+  width: 100vw;
+  height: 70vh;
+  overflow: hidden;
+  display: flex;
+}
+
+.flags {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flags img {
+  width: 100%;
+  height: 100%;
+}
+
+#arrows-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.arrow-button {
+  background-color: transparent;
+  color: white;
+  background-color: rgba(0, 0, 255, 0.1);
+  font-size: 40px;
+  border: none;
+  margin: 0 10px;
+  border-radius: 10px;
+}
+
+.arrow-button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+#dots-container {
+  width: 25vw;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.dot {
+  width: 1em;
+  height: 1em;
+  background-color: #808080;
+  border-radius: 50%;
+}
+
+.dot:hover {
+  cursor: pointer;
+  background-color: #505050;
+}
+
+.activeDot {
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color: #60bddf;
+  transform: scale(1.2);
+  transition: transform 1s;
+}
+
+@media screen and (max-width: 720px) {
+  #slide {
+    height: 40vh;
+  }
+
+  .dot,
+  .activeDot {
+    width: 0.75em;
+    height: 0.75em;
+  }
+
+  #dots-container {
+    width: 40vw;
+  }
+}
