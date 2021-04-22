@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from './Carousel';
-import MultislideCarousel from './multislideCarousel';
+import MultislideCarousel from './MultislideCarousel';
 
 const App =  () => {
     return (

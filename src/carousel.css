@@ -1,3 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #carousel {
   display: flex;
   flex-direction: column;
@@ -180,7 +186,7 @@
   }
 
   #slide-small {
-    height: 15vh;
+    height: 20vh;
   }
 
   .dot,
@@ -195,5 +201,13 @@
 
   .slideTitleSmall {
     font-size: 0.8em;
+  }
+
+  .slideTitle {
+    font-size: 1.2em;
+  }
+
+  .arrow-button {
+    font-size: 24px;
   }
 }

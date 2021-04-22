@@ -27,31 +27,29 @@ const MultislideCarousel = () => {
     }
 
 
-const swipeTowardsLeft = (e) => {
+const goToNextSlide = (e) => {
     e.stopPropagation();
     e.preventDefault();
     let slide = nrOfSlide < nrOfItemsOfSlider -1 ? nrOfSlide + 1 : 0;
     setNrOfSlide(slide);
 }
 
-const swipeLeftwards = () => {
+const swipeToNextSlide = () => {
     let slide = nrOfSlide < nrOfItemsOfSlider -1 ? nrOfSlide + 1 : 0;
     setNrOfSlide(slide);
-    console.log("You are swiping leftwards");
 }
 
 
-const swipeTowardsRight = (e) => {
+const goToPreviousSlide = (e) => {
     e.stopPropagation();
     e.preventDefault()
     let slide =nrOfSlide>0 ? nrOfSlide - 1 : nrOfItemsOfSlider-1 ;
     setNrOfSlide(slide);
 }
 
-const swipeRightwards = () => {
-    let slide =nrOfSlide>0 ? nrOfSlide - 1 : nrOfItemsOfSlider ;
+const swipeToPreviousSlide = () => {
+    let slide =nrOfSlide>0 ? nrOfSlide - 1 : nrOfItemsOfSlider -1 ;
     setNrOfSlide(slide);
-    console.log("You are swiping rightwards");
 }
 
 
@@ -60,14 +58,14 @@ const goToSlide = (slideNr) => {
 }
 
 const swipeSlider = (e) => {
-    e.stopPropagation();
     e.preventDefault();
+    e.stopPropagation();
     let difference = firstTouch - lastTouch;
     if(difference > 0){
-    swipeLeftwards()   
+    swipeToNextSlide()   
     } 
     else if(difference < 0){
-    swipeRightwards();
+    swipeToPreviousSlide();
     }   
 }
 
@@ -95,11 +93,11 @@ const swipeSlider = (e) => {
                 </div>
                 <div id="arrows-container">
                     <button className='arrow-button' 
-                    onTouchStart={(e) => swipeTowardsRight(e)}
-                    onClick={(e) => swipeTowardsRight(e)} >&#8678;</button>
+                    onTouchEnd={(e) => goToPreviousSlide(e)}
+                    onClick={(e) => goToPreviousSlide(e)} >&#8678;</button>
                     <button className= 'arrow-button' 
-                    onTouchStart={(e) => swipeTowardsLeft(e)}
-                    onClick={(e) => swipeTowardsLeft(e)} >&#8680;</button>
+                    onTouchEnd={(e) => goToNextSlide(e)}
+                    onClick={(e) => goToNextSlide(e)} >&#8680;</button>
                 </div> 
                 </div>
             ))}
