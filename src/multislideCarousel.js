@@ -2,17 +2,19 @@ import React, {useState, useEffect} from 'react';
 import images from './images.json';
 import './carousel.css';
 
-const Carousel = () => {
+const MultislideCarousel = () => {
 
     const [nrOfSlide, setNrOfSlide] = useState(0);
-    const [nrOfItemsOfSlider, setnrOfItemsOfSlider] = useState(images.length -1);
+    const [nrOfItemsOfSlider, setnrOfItemsOfSlider] = useState(images.length);
     const [firstTouch, setFirstTouch] = useState(0);
     const [lastTouch, setLastTouch] = useState(0);
+    const [imagesArray, setImagesArray] = useState([]);
 
 
 
     useEffect(() => {
         // setnrOfItemsOfSlider(images.length - 1);
+        setImagesArray(images);
         const interval = setInterval(incrementNr, 5000);
         return () => {
             clearInterval(interval);
@@ -28,23 +30,22 @@ const Carousel = () => {
 const swipeTowardsLeft = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    let slide = nrOfSlide < nrOfItemsOfSlider ? nrOfSlide + 1 : 0;
+    let slide = nrOfSlide < nrOfItemsOfSlider -1 ? nrOfSlide + 1 : 0;
     setNrOfSlide(slide);
-    console.log("You clicked the left button");
 }
 
 const swipeLeftwards = () => {
-    let slide = nrOfSlide < nrOfItemsOfSlider ? nrOfSlide + 1 : 0;
+    let slide = nrOfSlide < nrOfItemsOfSlider -1 ? nrOfSlide + 1 : 0;
     setNrOfSlide(slide);
     console.log("You are swiping leftwards");
 }
 
+
 const swipeTowardsRight = (e) => {
     e.stopPropagation();
-    e.preventDefault();
-    let slide =nrOfSlide>0 ? nrOfSlide - 1 : nrOfItemsOfSlider ;
+    e.preventDefault()
+    let slide =nrOfSlide>0 ? nrOfSlide - 1 : nrOfItemsOfSlider-1 ;
     setNrOfSlide(slide);
-    console.log("You clicked the right button");
 }
 
 const swipeRightwards = () => {
@@ -52,6 +53,7 @@ const swipeRightwards = () => {
     setNrOfSlide(slide);
     console.log("You are swiping rightwards");
 }
+
 
 const goToSlide = (slideNr) => {
     setNrOfSlide(slideNr);
@@ -62,16 +64,17 @@ const swipeSlider = (e) => {
     e.preventDefault();
     let difference = firstTouch - lastTouch;
     if(difference > 0){
-    swipeLeftwards();
+    swipeLeftwards()   
     } 
     else if(difference < 0){
     swipeRightwards();
     }   
 }
 
+
     return (
         <div id="carousel">
-            <div id="slide"
+            <div id="slide-small"
                      onTouchStart={e=> setFirstTouch(e.touches[0].clientX)}
                      onTouchMove={e=>  setLastTouch(e.touches[0].clientX)}
                      onTouchEnd={e => swipeSlider(e)}
@@ -79,15 +82,15 @@ const swipeSlider = (e) => {
                      onMouseMove={e => setLastTouch(e.clientX)}
                      onMouseUp={e => swipeSlider(e)}
             >
-            {images.map((image) =>(
+            {imagesArray.map((image) =>(
                 <div key={image.id}>
-                <div style={{transform:`translateX(${image.id * 100}%)`}} className={`container`}
+                <div style={{transform:`translateX(${(image.id+1) * 33.3}%)`}} className={`container-small`}
                 >
-                <div className={'carousel-content'}
-                style={{transform:`translateX(${-(nrOfSlide * 100)}%)`, transition: 'transform 1s' }}
+                <div className={`carousel-content-small ${nrOfSlide === image.id ? 'activeSlide' : 'unactiveSlide'}`}
+                style={{transform:`translateX(${-(nrOfSlide * 100)}%)`, transition: 'transform 1s'}}
                 >
                 <img src={image.image} alt={image.name} />
-                <div className={'slideTitle'}> {image.name}</div>
+                <div className={'slideTitleSmall'}> {image.name}</div>
                 </div>
                 </div>
                 <div id="arrows-container">
@@ -95,7 +98,7 @@ const swipeSlider = (e) => {
                     onTouchStart={(e) => swipeTowardsRight(e)}
                     onClick={(e) => swipeTowardsRight(e)} >&#8678;</button>
                     <button className= 'arrow-button' 
-                    onTouchStart={(e)=>swipeTowardsLeft(e)}
+                    onTouchStart={(e) => swipeTowardsLeft(e)}
                     onClick={(e) => swipeTowardsLeft(e)} >&#8680;</button>
                 </div> 
                 </div>
@@ -103,7 +106,7 @@ const swipeSlider = (e) => {
             </div>
 
             <div id="dots-container">
-                {images.map((image) => (
+                {imagesArray.map((image) => (
                     <div key={image.id} className={nrOfSlide === image.id ? "activeDot" : "dot"} onClick={() => {goToSlide(image.id);}}></div>
                 ))}
             </div>
@@ -112,4 +115,4 @@ const swipeSlider = (e) => {
     )
 }
 
-export default Carousel
+export default MultislideCarousel
