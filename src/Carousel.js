@@ -8,11 +8,13 @@ const Carousel = () => {
     const [nrOfItemsOfSlider, setnrOfItemsOfSlider] = useState(images.length - 1);
     const [firstTouch, setFirstTouch] = useState(0);
     const [lastTouch, setLastTouch] = useState(0);
+    const [slidesArray, setSlidesArray] = useState([]);
 
 
 
     useEffect(() => {
         // setnrOfItemsOfSlider(images.length - 1);
+        setSlidesArray(images);
         const interval = setInterval(incrementNr, 5000);
         return () => {
             clearInterval(interval);
@@ -76,15 +78,15 @@ const swipeSlider = (e) => {
                      onMouseMove={e => setLastTouch(e.clientX)}
                      onMouseUp={e => swipeSlider(e)}
             >
-            {images.map((image) =>(
-                <div key={image.id}>
-                <div style={{transform:`translateX(${image.id * 100}%)`}} className={`container`}
+            {slidesArray.map((slide) =>(
+                <div key={slide.id}>
+                <div style={{transform:`translateX(${slide.id * 100}%)`}} className={`container`}
                 >
                 <div className={'carousel-content'}
                 style={{transform:`translateX(${-(nrOfSlide * 100)}%)`, transition: 'transform 1s' }}
                 >
-                <img src={image.image} alt={image.name} />
-                <div className={'slideTitle'}> {image.name}</div>
+                <img src={slide.image} alt={slide.name} />
+                <div className={'slideTitle'}> {slide.name}</div>
                 </div>
                 </div>
                 <div id="arrows-container">
@@ -100,8 +102,8 @@ const swipeSlider = (e) => {
             </div>
 
             <div id="dots-container">
-                {images.map((image) => (
-                    <div key={image.id} className={nrOfSlide === image.id ? "activeDot" : "dot"} onClick={() => {goToSlide(image.id);}}></div>
+                {slidesArray.map((slide) => (
+                    <div key={slide.id} className={nrOfSlide === slide.id ? "activeDot" : "dot"} onClick={() => {goToSlide(slide.id);}}></div>
                 ))}
             </div>
 

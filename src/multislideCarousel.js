@@ -8,13 +8,13 @@ const MultislideCarousel = () => {
     const [nrOfItemsOfSlider, setnrOfItemsOfSlider] = useState(images.length);
     const [firstTouch, setFirstTouch] = useState(0);
     const [lastTouch, setLastTouch] = useState(0);
-    const [imagesArray, setImagesArray] = useState([]);
+    const [slidesArray, setSlidesArray] = useState([]);
 
 
 
     useEffect(() => {
         // setnrOfItemsOfSlider(images.length - 1);
-        setImagesArray(images);
+        setSlidesArray(images);
         const interval = setInterval(incrementNr, 5000);
         return () => {
             clearInterval(interval);
@@ -80,15 +80,15 @@ const swipeSlider = (e) => {
                      onMouseMove={e => setLastTouch(e.clientX)}
                      onMouseUp={e => swipeSlider(e)}
             >
-            {imagesArray.map((image) =>(
-                <div key={image.id}>
-                <div style={{transform:`translateX(${(image.id+1) * 33.3}%)`}} className={`container-small`}
+            {slidesArray.map((slide) =>(
+                <div key={slide.id}>
+                <div style={{transform:`translateX(${(slide.id+1) * 33.3}%)`}} className={`container-small`}
                 >
-                <div className={`carousel-content-small ${nrOfSlide === image.id ? 'activeSlide' : 'unactiveSlide'}`}
+                <div className={`carousel-content-small ${nrOfSlide === slide.id ? 'activeSlide' : 'unactiveSlide'}`}
                 style={{transform:`translateX(${-(nrOfSlide * 100)}%)`, transition: 'transform 1s'}}
                 >
-                <img src={image.image} alt={image.name} />
-                <div className={'slideTitleSmall'}> {image.name}</div>
+                <img src={slide.image} alt={slide.name} />
+                <div className={'slideTitleSmall'}> {slide.name}</div>
                 </div>
                 </div>
                 <div id="arrows-container">
@@ -104,8 +104,8 @@ const swipeSlider = (e) => {
             </div>
 
             <div id="dots-container">
-                {imagesArray.map((image) => (
-                    <div key={image.id} className={nrOfSlide === image.id ? "activeDot" : "dot"} onClick={() => {goToSlide(image.id);}}></div>
+                {slidesArray.map((slide) => (
+                    <div key={slide.id} className={nrOfSlide === slide.id ? "activeDot" : "dot"} onClick={() => {goToSlide(slide.id);}}></div>
                 ))}
             </div>
 

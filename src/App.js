@@ -5,7 +5,6 @@ import MultislideCarousel from './MultislideCarousel';
 const App =  () => {
     return (
         <div>
-            {/* <h1> Welcome {new Date().toDateString()}</h1> */}
             <Carousel/>
             <MultislideCarousel/>
         </div>
