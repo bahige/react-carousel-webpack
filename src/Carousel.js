@@ -58,7 +58,6 @@ const goToSlide = (slideNr) => {
 const swipeSlider = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    e.nativeEvent.preventDefault();
     let difference = firstTouch - lastTouch;
     if(difference > 0){
         swipeToNextSlide();
@@ -89,7 +88,7 @@ const swipeSlider = (e) => {
                 <div className={'slideTitle'}> {slide.name}</div>
                 </div>
                 </div>
-                <div id="arrows-container">
+                <div id="arrow-buttons-container">
                     <button className='arrow-button' 
                     onTouchEnd={(e) => goToPreviousSlide(e)}
                     onClick={(e) => goToPreviousSlide(e)} >&#8678;</button>
